@@ -1,0 +1,38 @@
+table {
+    border: 1px solid black;
+    width: 80%;
+    padding: 1rem;
+}
+
+table, th, tr {
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+h3 {
+  color: maroon;
+  font-size: 2rem;
+}
+
+.lobbycontainer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    text-align: center;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    height: 100vh;
+    overflow: auto;
+}
+
+.lobbyRowContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    
+}
+
+.lobbyRowContainer + .lobbyRowContainer {
+    border-top: 1px solid black;
+}

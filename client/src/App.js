@@ -1,6 +1,4 @@
 // CSS Imports
-import "./css/main.css";
-
 // Component Imports
 import Game from "./components/Game"
 
@@ -9,6 +7,7 @@ import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 
 import socketIOClient from "socket.io-client";
+import Lobby from "./components/Lobby";
 const ENDPOINT = "http://127.0.0.1:4001";
 
 function App() {
@@ -23,8 +22,8 @@ function App() {
   
   return (
     <div>
-      <Game/>
-
+      {/* <Game/> */}
+      <Lobby />
     </div>
   );
 }
