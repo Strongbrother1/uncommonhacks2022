@@ -18,5 +18,8 @@
   "homepage": "https://github.com/yvesshum/uncommonhacks2022#readme",
   "devDependencies": {
     "truffle": "^5.5.7"
+  },
+  "dependencies": {
+    "react-dom": "^18.0.0"
   }
 }

@@ -1,9 +1,9 @@
 // CSS Imports
 // Component Imports
 import Game from "./components/Game";
+import Login from "./components/Login";
 
 import React, { Component, useState, useEffect } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 
 import socketIOClient from "socket.io-client";
@@ -14,10 +14,29 @@ function App() {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
+    // Connect to Socket
     const socket = socketIOClient(ENDPOINT);
     socket.on("FromAPI", (data) => {
       setResponse(data);
     });
+
+    const connectWeb3 = async () => {
+      console.log("running");
+      // Get network provider and web3 instance.
+      const web3 = await getWeb3();
+      console.log("web3", web3);
+      // Use web3 to get the user's accounts.
+      const accounts = (await web3.eth.getAccounts())[0];
+      console.log("Accounts", accounts);
+      return { web3: web3, acc: accounts };
+    };
+
+    try {
+      const wallet_data = connectWeb3();
+      socket.emit("playerLogin", wallet_data);
+    } catch (error) {
+      alert(`Failed to load web3 or accounts. Check console for details.`);
+    }
   }, []);
 
   return (
