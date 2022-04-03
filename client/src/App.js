@@ -12,6 +12,8 @@ class App extends Component {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
 
+      console.log(web3.eth);
+
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
@@ -40,6 +42,7 @@ class App extends Component {
 
     // Stores a given value, 5 by default.
     await contract.methods.set(5).send({ from: accounts[0] });
+    console.log("Sent");
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.get().call();
