@@ -1,0 +1,9 @@
+version: '2'
+services:
+  test:
+    build: .
+    volumes:
+      - .:/src
+    ports:
+      - "3000:3000"
+      - "8545:8545"
