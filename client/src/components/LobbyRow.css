@@ -4,14 +4,20 @@ table {
     padding: 1rem;
 }
 
-table, th, tr {
+table,
+th,
+tr {
     font-family: sans-serif;
     font-size: 14px;
 }
 
 h3 {
-  color: maroon;
-  font-size: 2rem;
+    color: maroon;
+    font-size: 2rem;
+}
+
+p {
+    margin-bottom: 0 !important;
 }
 
 .lobbycontainer {
@@ -28,9 +34,11 @@ h3 {
 
 .lobbyRowContainer {
     display: flex;
+    width: 70%;
     gap: 1rem;
     align-items: center;
-    
+    justify-content: space-between;
+    height: 5rem;
 }
 
 .lobbyRowContainer + .lobbyRowContainer {

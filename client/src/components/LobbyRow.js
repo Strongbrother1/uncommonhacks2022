@@ -1,19 +1,41 @@
 import React from "react";
-import "./LobbyRow.css"
+import { shortenAddress } from "../utils";
+import "./LobbyRow.css";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router";
+import { accountContext, contractContext, web3Context } from "../context";
+import axios from "axios";
 
-
-export default function LobbyRow(props) {
-    const lobby_id = props.lobby_id, buy_in = props.buy_in,
-          players = props.players, time_left = props.time_left;
+export default function LobbyRow({ lobby }) {
+    const web3 = React.useContext(web3Context);
+    const account = React.useContext(accountContext);
+    const contract = React.useContext(contractContext);
+    const navigate = useNavigate();
+    const handleJoin = async () => {
+        if (!lobby.players.includes(account)) {
+            console.log("lobby", lobby.lobby_id);
+            let txn = await contract.methods.joinLobby(lobby.lobby_id).send({ from: account });
+            await axios.post(`http://localhost:4001/api/lobbies/${lobby.lobby_id}/join`, {
+                transactionReceipt: txn,
+                account,
+            });
+        }
+        navigate(`/game/${lobby.lobby_id}`);
+    };
 
     return (
         <div class="lobbyRowContainer">
-            <p> Room Number: {lobby_id} </p>
-            <p> Buyin: ${buy_in} </p>
-            <p> Players: {players}/10 </p>
-            <p> Time: {time_left}</p>
+            <p> Room Number: {lobby.lobby_id} </p>
+            <p> Buy In: {web3.utils.fromWei(lobby.buy_in)} ETH </p>
+            <p> Rake: {web3.utils.fromWei(lobby.rake)} ETH </p>
 
-            <button id="spectateButton" style={{width: "5rem"}}> Join </button>
+            <p>
+                Players: {lobby.players.length}/{lobby.num_players}{" "}
+            </p>
+
+            <Button style={{ width: "5rem" }} onClick={handleJoin}>
+                Join
+            </Button>
         </div>
-    )
+    );
 }

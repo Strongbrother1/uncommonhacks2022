@@ -20,6 +20,7 @@
     "truffle": "^5.5.7"
   },
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.4",
     "react-dom": "^18.0.0"
   }
 }
