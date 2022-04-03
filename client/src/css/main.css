@@ -116,6 +116,26 @@ div {
     outline: none;
 }
 
+#loginMenu {
+    position: relative;
+    margin: auto;
+    margin-top: 100px;
+    width: 350px;
+    padding: 20px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+#loginMenu p {
+    padding: 0;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
 #startMenu {
     position: relative;
     margin: auto;
@@ -154,6 +174,38 @@ div {
     border: solid 1px #CCCCCC;
     box-shadow: 0 0 3px 1px #DDDDDD;
 }
+
+.general_button {
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: large;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #2ecc71;
+    border: 0;
+    border-bottom: 2px solid #28be68;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #28be68;
+    box-shadow: inset 0 -2px #28be68;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.general_button:active, .general_button:hover {
+    top: 1px;
+    background: #55D88B;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 
 #startButton, #spectateButton {
     position: relative;

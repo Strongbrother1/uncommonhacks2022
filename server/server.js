@@ -4,6 +4,11 @@
  *
  */
 
+// Imports
+const c = require('./config.json')
+const util = require('./utils/util')
+
+// Initialize
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -28,16 +33,33 @@ const io = socketIo(server, {
 let interval;
 
 io.on("connection", (socket) => {
+
+  // Set Client States
+  var currentPlayer = {
+    id: socket.id,
+    walletId: null
+  }
+
   console.log("New client connected");
   if (interval) {
     clearInterval(interval);
   }
   interval = setInterval(() => getApiAndEmit(socket), 1000);
+
+  socket.on('playerLogin', function (data) {
+    currentPlayer.walletId = data.acc
+    console.log("Player Wallet", currentPlayer.walletId)
+  });
+
   socket.on("disconnect", () => {
     console.log("Client disconnected");
     clearInterval(interval);
   });
 });
+
+const requestWallet = socket => {
+
+}
 
 const getApiAndEmit = socket => {
   const response = new Date();
